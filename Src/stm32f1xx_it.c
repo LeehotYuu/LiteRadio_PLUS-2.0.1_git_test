@@ -21,8 +21,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_it.h"
-#include "FreeRTOS.h"
-#include "task.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "adc.h"
@@ -81,7 +79,7 @@ extern DMA_HandleTypeDef hdma_usart1_tx;
 extern DMA_HandleTypeDef hdma_usart1_rx;
 extern UART_HandleTypeDef huart1;
 extern TIM_HandleTypeDef htim4;
-extern uint16_t (*RF_Process)(uint16_t* controlData);
+
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -335,7 +333,7 @@ void EXTI15_10_IRQHandler(void)
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
 
   /* USER CODE END EXTI15_10_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);
+  HAL_GPIO_EXTI_IRQHandler(SX1280_DIO1_Pin);
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 #if defined(LiteRadio_Plus_SX1280)
     if(Get_ProtocolIndex()==SX1280_ELRS)
@@ -514,4 +512,3 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 }
 
 /* USER CODE END 1 */
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
